@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/var/www/html
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_NAME: tasklog
+      DB_ADAPTER: sqlite
+      DB_NAME: /var/www/html/data/tasklog.db
+      NENE2_LOCAL_JWT_SECRET: local-dev-jwt-secret
+    ports:
+      - "8080:8080"
+    command: ["php", "-S", "0.0.0.0:8080", "-t", "public_html"]
